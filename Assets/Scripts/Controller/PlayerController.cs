@@ -45,13 +45,14 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name);
+        gameObject.GetComponent<AudioSource>().Play();
         StartCoroutine(Example());
         Time.timeScale = 0;
     }
 
     IEnumerator Example()
     {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(3);
         if (OnContact != null)
         {
             OnContact();
