@@ -50,7 +50,7 @@ public class SpawnerController : MonoBehaviour {
     private void Spawnenemy()
     {
         float xPos = UnityEngine.Random.Range(-10f, 10f);
-        float size = UnityEngine.Random.Range(3f, 10f);
+        float size = UnityEngine.Random.Range(3f, 10f+difficulty);
         float fallSpeed = UnityEngine.Random.Range(5f+difficulty, 20f+difficulty);
         Vector2 enemyPos = new Vector2(xPos, 25);
         Vector3 enemySize = new Vector3(size, size, 0);
@@ -59,7 +59,6 @@ public class SpawnerController : MonoBehaviour {
         if(nbr % 4 == 0)
         {
             enemyPos = new Vector2(Player.transform.position.x, 25);
-            Debug.Log("Spawning on Head");
         }
         GameObject enemy = Instantiate(Enemy, enemyPos, Quaternion.identity);
         enemy.transform.localScale = enemySize;
@@ -76,7 +75,6 @@ public class SpawnerController : MonoBehaviour {
         }
         difficulty = Mathf.Clamp(Mathf.RoundToInt( nbr / 10f),0,8);
         float reduction =  Mathf.Clamp((nbr / 100f),0f,0.75f);
-        Debug.Log("Diff : " + difficulty + "reduction :" + reduction);
         return reduction;
     }
 }
